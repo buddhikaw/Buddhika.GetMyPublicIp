@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Buddhika.GetMyPublicIp.ActivityLibrary.Properties" GeneratedClassName="GetMyPublicIp">
+  <Profiles />
+  <Settings>
+    <Setting Name="Username" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">getmypublicipservice@gmail.com</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">GetMyPublicIpService6563</Value>
+    </Setting>
+    <Setting Name="Subject" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">It's Your Public Ip at {0}</Value>
+    </Setting>
+    <Setting Name="SuccessBodyHtml" Type="System.String" Scope="Application">
+      <Value Profile="(Default)"> &lt;h1&gt; Wanna know your public Ip&lt;/h1&gt; &lt;p&gt; &lt;b&gt; {0} &lt;/b&gt; is your new public Ip&lt;/p&gt; &lt;p&gt;no need to thank and it's my pleasure to keep you update &lt;/p&gt; </Value>
+    </Setting>
+    <Setting Name="ToAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">bnwimalasena@gmail.com</Value>
+    </Setting>
+    <Setting Name="FailBodyHtml" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">&lt;h1&gt; ohhhh , can't tell your public IP &lt;/h1&gt; &lt;br/&gt; &lt;p&gt; IP Details providing Web Service seems not working.&lt;/p&gt; </Value>
+    </Setting>
+    <Setting Name="FailSubject" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Sorry, Can't fetch your public ip at {0}</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

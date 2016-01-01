@@ -1,9 +1,12 @@
-﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Buddhika.GetMyPublicIp.Workflow.Workflow1" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#"
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Buddhika.GetMyPublicIp.Workflow.Workflow1" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="Buddhika.GetMyPublicIp.Workflow.Workflow1_1"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:bga="clr-namespace:Buddhika.GetMyPublicIp.ActivityLibrary;assembly=Buddhika.GetMyPublicIp.ActivityLibrary"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
@@ -17,18 +20,157 @@
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
     <sco:Collection x:TypeArguments="AssemblyReference">
-      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>System.Core</AssemblyReference>
       <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>Buddhika.GetMyPublicIp.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>Buddhika.GetMyPublicIp.Workflow</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <sap2010:WorkflowViewState.IdRef>Buddhika.GetMyPublicIp.Workflow.Workflow1_1</sap2010:WorkflowViewState.IdRef>
+  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="CurrentIp">
+        <Variable.Default>
+          <mca:CSharpValue x:TypeArguments="x:String">string.Empty</mca:CSharpValue>
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="NewIp">
+        <Variable.Default>
+          <mca:CSharpValue x:TypeArguments="x:String">string.Empty</mca:CSharpValue>
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:Boolean" Default="True" Name="IsIpRetrievalSuccess" />
+    </Sequence.Variables>
+    <bga:GetNewIpActivity sap2010:WorkflowViewState.IdRef="GetNewIpActivity_1">
+      <bga:GetNewIpActivity.IsSuccess>
+        <OutArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpReference x:TypeArguments="x:Boolean">IsIpRetrievalSuccess</mca:CSharpReference>
+        </OutArgument>
+      </bga:GetNewIpActivity.IsSuccess>
+      <bga:GetNewIpActivity.NewIp>
+        <InOutArgument x:TypeArguments="x:String">
+          <mca:CSharpReference x:TypeArguments="x:String">NewIp</mca:CSharpReference>
+        </InOutArgument>
+      </bga:GetNewIpActivity.NewIp>
+    </bga:GetNewIpActivity>
+    <While sap2010:WorkflowViewState.IdRef="While_1" Condition="True">
+      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <If sap2010:WorkflowViewState.IdRef="If_1">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean">IsIpRetrievalSuccess</mca:CSharpValue>
+            </InArgument>
+          </If.Condition>
+          <If.Then>
+            <If sap2010:WorkflowViewState.IdRef="If_2">
+              <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">
+                  <mca:CSharpValue x:TypeArguments="x:Boolean">CurrentIp == NewIp</mca:CSharpValue>
+                </InArgument>
+              </If.Condition>
+              <If.Else>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <bga:EmailNewIpActivity sap2010:WorkflowViewState.IdRef="EmailNewIpActivity_1">
+                    <bga:EmailNewIpActivity.NewIp>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String">NewIp</mca:CSharpValue>
+                      </InArgument>
+                    </bga:EmailNewIpActivity.NewIp>
+                  </bga:EmailNewIpActivity>
+                  <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">
+                        <mca:CSharpReference x:TypeArguments="x:String">CurrentIp</mca:CSharpReference>
+                      </OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String">NewIp</mca:CSharpValue>
+                      </InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Else>
+            </If>
+          </If.Then>
+          <If.Else>
+            <bga:SendIpRetrievalFailNotificationActivity sap2010:WorkflowViewState.IdRef="SendIpRetrievalFailNotificationActivity_1" />
+          </If.Else>
+        </If>
+        <Delay sap2010:WorkflowViewState.IdRef="Delay_1">
+          <InArgument x:TypeArguments="x:TimeSpan">
+            <mca:CSharpValue x:TypeArguments="x:TimeSpan">TimeSpan.FromMinutes(1)</mca:CSharpValue>
+          </InArgument>
+        </Delay>
+        <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpReference x:TypeArguments="x:Boolean">IsIpRetrievalSuccess</mca:CSharpReference>
+            </OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+          </Assign.Value>
+        </Assign>
+        <bga:GetNewIpActivity sap2010:WorkflowViewState.IdRef="GetNewIpActivity_2">
+          <bga:GetNewIpActivity.IsSuccess>
+            <OutArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpReference x:TypeArguments="x:Boolean">IsIpRetrievalSuccess</mca:CSharpReference>
+            </OutArgument>
+          </bga:GetNewIpActivity.IsSuccess>
+          <bga:GetNewIpActivity.NewIp>
+            <InOutArgument x:TypeArguments="x:String">
+              <mca:CSharpReference x:TypeArguments="x:String">NewIp</mca:CSharpReference>
+            </InOutArgument>
+          </bga:GetNewIpActivity.NewIp>
+        </bga:GetNewIpActivity>
+      </Sequence>
+    </While>
+    <sads:DebugSymbol.Symbol>d25DOlxVc2Vyc1xCdWRkaGlrYVxEb2N1bWVudHNcR2l0SHViXEJ1ZGRoaWthLkdldE15UHVibGljSXBcQnVkZGhpa2EuR2V0TXlQdWJsaWNJcC5Xb3JrZmxvd1xHZXRNeVB1YmxpY0lwV2YueGFtbB0nA4sBDgIBASsLK1UCAQcwCzBVAgEDMzUzOwIBAjUFQBwCATxBBYkBDQIBCzgLOGYCAUE9Cz1WAgE9QgeIARICAQ1BQEFGAgEMQwlsDgIBIm0JcRECAR1yCXsSAgEXfAmHASACAQ5GD0ZiAgEjSg1nEgIBKGoNaogBAgEnbw1vZAIBHnk1eTkCARx1D3VqAgEYfw9/agIBE4QBD4QBWgIBD00TTWQCASlREWUcAgEtUhNYLAIBN1kTZBwCAS5VGVVcAgE4YRlhXAIBM1wZXGgCAS8=</sads:DebugSymbol.Symbol>
+  </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Buddhika.GetMyPublicIp.Workflow.Workflow1_1" sap:VirtualizedContainerService.HintSize="440,440" />
+      <sap2010:ViewStateData Id="GetNewIpActivity_1" sap:VirtualizedContainerService.HintSize="736.8,22.4" />
+      <sap2010:ViewStateData Id="EmailNewIpActivity_1" sap:VirtualizedContainerService.HintSize="243.2,22.4" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="243.2,62.4" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="265.6,249.6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,401.6" />
+      <sap2010:ViewStateData Id="SendIpRetrievalFailNotificationActivity_1" sap:VirtualizedContainerService.HintSize="200,22.4" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="688.8,553.6" />
+      <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="688.8,22.4" />
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="688.8,62.4" />
+      <sap2010:ViewStateData Id="GetNewIpActivity_2" sap:VirtualizedContainerService.HintSize="688.8,22.4" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="711.2,905.6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="While_1" sap:VirtualizedContainerService.HintSize="736.8,1067.2" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="759.2,1254.4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Buddhika.GetMyPublicIp.Workflow.Workflow1_1" sap:VirtualizedContainerService.HintSize="799.2,1334.4" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
