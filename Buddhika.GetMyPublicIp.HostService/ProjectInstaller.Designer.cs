@@ -39,7 +39,10 @@
             // 
             // serviceInstaller1
             // 
-            this.serviceInstaller1.ServiceName = "Service1";
+            this.serviceInstaller1.DelayedAutoStart = true;
+            this.serviceInstaller1.Description = "GetMyPublicIp If changed";
+            this.serviceInstaller1.ServiceName = "Buddhika.GetMyPublicIp.HostService";
+            this.serviceInstaller1.StartType = System.ServiceProcess.ServiceStartMode.Automatic;
             // 
             // ProjectInstaller
             // 
