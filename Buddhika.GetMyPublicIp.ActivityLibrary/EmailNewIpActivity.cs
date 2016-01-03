@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Activities;
 using Buddhika.GetMyPublicIp.Utility;
+using System.Configuration;
 
 
 namespace Buddhika.GetMyPublicIp.ActivityLibrary
@@ -20,12 +21,12 @@ namespace Buddhika.GetMyPublicIp.ActivityLibrary
         {
             // Obtain the runtime value of the Text input argument
             string newIp = context.GetValue(this.NewIp);
-            string toAddress = Properties.GetMyPublicIp.Default.ToAddress;
-            string subject = Properties.GetMyPublicIp.Default.Subject;
+            string toAddress = ConfigurationManager.AppSettings["ToAddress"];
+            string subject = ConfigurationManager.AppSettings["Subject"];
             subject = string.Format(subject, DateTime.Now.ToString());
-            string body = Properties.GetMyPublicIp.Default.SuccessBodyHtml;
-            string username = Properties.GetMyPublicIp.Default.Username;
-            string password = Properties.GetMyPublicIp.Default.Password;
+            string body = ConfigurationManager.AppSettings["SuccessBodyHtml"];
+            string username = ConfigurationManager.AppSettings["Username"];
+            string password = ConfigurationManager.AppSettings["Password"];
             body = string.Format(body, newIp);
             SendEmailWithGmail email = new SendEmailWithGmail(toAddress, subject, body, username, password);
             email.SendEmail();

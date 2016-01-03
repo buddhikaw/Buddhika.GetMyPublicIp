@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Activities;
 using Buddhika.GetMyPublicIp.Utility;
+using System.Configuration;
 
 namespace Buddhika.GetMyPublicIp.ActivityLibrary
 {
@@ -16,12 +17,12 @@ namespace Buddhika.GetMyPublicIp.ActivityLibrary
         // and return the value from the Execute method.
         protected override void Execute(CodeActivityContext context)
         {
-            string toAddress = Properties.GetMyPublicIp.Default.ToAddress;
-            string subject = Properties.GetMyPublicIp.Default.FailSubject;
+            string toAddress = ConfigurationManager.AppSettings["ToAddress"];
+            string subject = ConfigurationManager.AppSettings["FailSubject"];
             subject = string.Format(subject, DateTime.Now.ToString());
-            string body = Properties.GetMyPublicIp.Default.FailBodyHtml;
-            string username = Properties.GetMyPublicIp.Default.Username;
-            string password = Properties.GetMyPublicIp.Default.Password;
+            string body = ConfigurationManager.AppSettings["FailBodyHtml"];
+            string username = ConfigurationManager.AppSettings["Username"];
+            string password = ConfigurationManager.AppSettings["Password"];
             SendEmailWithGmail email = new SendEmailWithGmail(toAddress, subject, body, username, password);
             email.SendEmail();
 

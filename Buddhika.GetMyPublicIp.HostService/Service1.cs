@@ -24,7 +24,9 @@ namespace Buddhika.GetMyPublicIp.HostService
         protected override void OnStart(string[] args)
         {
             Activity workflow1 = new Workflow1();
-            WorkflowInvoker.Invoke(workflow1);
+            //WorkflowInvoker.Invoke(workflow1);
+            WorkflowApplication wfApp = new WorkflowApplication(workflow1);
+            wfApp.Run();
         }
 
         protected override void OnStop()
