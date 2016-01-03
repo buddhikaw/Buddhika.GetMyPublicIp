@@ -28,7 +28,7 @@ namespace Buddhika.GetMyPublicIp.Utility
         {
             try
             {
-                SmtpClient smtp = new SmtpClient
+                using (SmtpClient smtp = new SmtpClient
                 {
                     Host = "smtp.gmail.com", // smtp server address here…
                     Port = 587,
@@ -37,15 +37,18 @@ namespace Buddhika.GetMyPublicIp.Utility
                     UseDefaultCredentials = false,
                     Credentials = new System.Net.NetworkCredential(username, password),
                     Timeout = 30000,
-                };
-                MailMessage message = new MailMessage(username, toAddress, subject, body);
-                message.IsBodyHtml = true;
-                smtp.Send(message);
-
+                })
+                {
+                    using (MailMessage message = new MailMessage(username, toAddress, subject, body))
+                    {
+                        message.IsBodyHtml = true;
+                        smtp.Send(message);
+                    }
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+              //  WriteEventLog.Write("Mail Send Error Occured :"+ex.Message,System.Diagnostics.EventLogEntryType.Error);
             }
         }
     }

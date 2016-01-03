@@ -26,17 +26,23 @@ namespace Buddhika.GetMyPublicIp.ActivityLibrary
             {
                 string url = "http://freegeoip.net/json/";
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                string jsonStr = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                JObject jObj = JObject.Parse(jsonStr);
-                string ipAddress = jObj["ip"].ToString();
-                if(Regex.IsMatch(ipAddress, ipRegEx))
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
-                    context.SetValue(NewIp, ipAddress);
-                }
-                else
-                {
-                    context.SetValue(IsSuccess, false);
+                    using (StreamReader streamReader = new StreamReader(response.GetResponseStream()))
+                    {
+                        string jsonStr = streamReader.ReadToEnd();
+
+                        JObject jObj = JObject.Parse(jsonStr);
+                        string ipAddress = jObj["ip"].ToString();
+                        if (Regex.IsMatch(ipAddress, ipRegEx))
+                        {
+                            context.SetValue(NewIp, ipAddress);
+                        }
+                        else
+                        {
+                            context.SetValue(IsSuccess, false);
+                        }
+                    }
                 }
             }
             catch (Exception)
