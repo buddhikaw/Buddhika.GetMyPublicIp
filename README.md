@@ -14,3 +14,7 @@ To access any of above from a outside network you need to know the IP address an
 Any Alternatives ?
 
 Can use Free DDNS service providers, but these free service are not very efficient. There are paid DDNS providers also but i have not use those.
+
+
+Developer : Buddhika Nirmal Wimalase
+Email : bnwimalasena@gmail.com
