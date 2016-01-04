@@ -1,0 +1,3 @@
+obj\Debug\_Buddhika.GetMyPublicIp.ActivityLibrary.g.cs
+obj\Debug\Activity1.g.cs
+obj\Debug\Buddhika.GetMyPublicIp.ActivityLibrary_Activity1_BeforeInitializeComponentHelper.cs

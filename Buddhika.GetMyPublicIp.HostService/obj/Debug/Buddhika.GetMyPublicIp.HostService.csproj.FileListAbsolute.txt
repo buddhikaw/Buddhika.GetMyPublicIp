@@ -1,0 +1,17 @@
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\obj\Debug\Buddhika.GetMyPublicIp.HostService.csprojResolveAssemblyReference.cache
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\obj\Debug\Buddhika.GetMyPublicIp.HostService.ProjectInstaller.resources
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\obj\Debug\Buddhika.GetMyPublicIp.HostService.Service1.resources
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\obj\Debug\Buddhika.GetMyPublicIp.HostService.csproj.GenerateResource.Cache
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\bin\Debug\Buddhika.GetMyPublicIp.HostService.exe.config
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\bin\Debug\Buddhika.GetMyPublicIp.HostService.exe
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\bin\Debug\Buddhika.GetMyPublicIp.HostService.pdb
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\bin\Debug\Buddhika.GetMyPublicIp.ActivityLibrary.dll
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\bin\Debug\Buddhika.GetMyPublicIp.Utility.dll
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\bin\Debug\Buddhika.GetMyPublicIp.Workflow.exe
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\bin\Debug\Buddhika.GetMyPublicIp.ActivityLibrary.pdb
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\bin\Debug\Buddhika.GetMyPublicIp.Utility.pdb
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\bin\Debug\Buddhika.GetMyPublicIp.Workflow.pdb
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\obj\Debug\Buddhika.GetMyPublicIp.HostService.exe
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.HostService\obj\Debug\Buddhika.GetMyPublicIp.HostService.pdb

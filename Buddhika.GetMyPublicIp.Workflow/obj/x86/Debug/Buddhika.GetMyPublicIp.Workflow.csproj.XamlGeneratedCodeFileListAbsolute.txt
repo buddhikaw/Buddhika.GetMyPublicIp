@@ -1,0 +1,4 @@
+obj\x86\Debug\_Buddhika.GetMyPublicIp.Workflow.g.cs
+obj\x86\Debug\GetMyPublicIpWf.g.cs
+obj\x86\Debug\Buddhika.GetMyPublicIp.Workflow_Workflow1_BeforeInitializeComponentHelper.cs
+C:\Users\Buddhika\Documents\GitHub\Buddhika.GetMyPublicIp\Buddhika.GetMyPublicIp.Workflow\obj\x86\Debug\Buddhika.GetMyPublicIp.Workflow_Workflow1_CompiledExpressionRoot.cs

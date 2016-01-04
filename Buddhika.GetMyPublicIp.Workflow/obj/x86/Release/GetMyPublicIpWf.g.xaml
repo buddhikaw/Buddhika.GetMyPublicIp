@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<bgw:Workflow1 xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:bga="clr-namespace:Buddhika.GetMyPublicIp.ActivityLibrary;assembly=Buddhika.GetMyPublicIp.ActivityLibrary" xmlns:bgw="clr-namespace:Buddhika.GetMyPublicIp.Workflow;assembly=Buddhika.GetMyPublicIp.Workflow" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>Buddhika.GetMyPublicIp.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>Buddhika.GetMyPublicIp.Workflow</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <bgw:Workflow1.Implementation>
+    <Sequence>
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="CurrentIp">
+          <Variable.Default>
+            <mca:CSharpValue x:TypeArguments="x:String">string.Empty</mca:CSharpValue>
+          </Variable.Default>
+        </Variable>
+        <Variable x:TypeArguments="x:String" Name="NewIp">
+          <Variable.Default>
+            <mca:CSharpValue x:TypeArguments="x:String">string.Empty</mca:CSharpValue>
+          </Variable.Default>
+        </Variable>
+        <Variable x:TypeArguments="x:Boolean" Default="True" Name="IsIpRetrievalSuccess" />
+      </Sequence.Variables>
+      <bga:GetNewIpActivity>
+        <bga:GetNewIpActivity.IsSuccess>
+          <OutArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpReference x:TypeArguments="x:Boolean">IsIpRetrievalSuccess</mca:CSharpReference>
+          </OutArgument>
+        </bga:GetNewIpActivity.IsSuccess>
+        <bga:GetNewIpActivity.NewIp>
+          <InOutArgument x:TypeArguments="x:String">
+            <mca:CSharpReference x:TypeArguments="x:String">NewIp</mca:CSharpReference>
+          </InOutArgument>
+        </bga:GetNewIpActivity.NewIp>
+      </bga:GetNewIpActivity>
+      <While Condition="True">
+        <Sequence>
+          <If>
+            <If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">IsIpRetrievalSuccess</mca:CSharpValue>
+              </InArgument>
+            </If.Condition>
+            <If.Then>
+              <If>
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">CurrentIp == NewIp</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Else>
+                  <Sequence>
+                    <bga:EmailNewIpActivity>
+                      <bga:EmailNewIpActivity.NewIp>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">NewIp</mca:CSharpValue>
+                        </InArgument>
+                      </bga:EmailNewIpActivity.NewIp>
+                    </bga:EmailNewIpActivity>
+                    <Assign>
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">
+                          <mca:CSharpReference x:TypeArguments="x:String">CurrentIp</mca:CSharpReference>
+                        </OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String">NewIp</mca:CSharpValue>
+                        </InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </If.Then>
+            <If.Else>
+              <bga:SendIpRetrievalFailNotificationActivity />
+            </If.Else>
+          </If>
+          <Delay>
+            <InArgument x:TypeArguments="x:TimeSpan">
+              <mca:CSharpValue x:TypeArguments="x:TimeSpan">TimeSpan.FromMinutes(1)</mca:CSharpValue>
+            </InArgument>
+          </Delay>
+          <Assign>
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpReference x:TypeArguments="x:Boolean">IsIpRetrievalSuccess</mca:CSharpReference>
+              </OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+            </Assign.Value>
+          </Assign>
+          <bga:GetNewIpActivity>
+            <bga:GetNewIpActivity.IsSuccess>
+              <OutArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpReference x:TypeArguments="x:Boolean">IsIpRetrievalSuccess</mca:CSharpReference>
+              </OutArgument>
+            </bga:GetNewIpActivity.IsSuccess>
+            <bga:GetNewIpActivity.NewIp>
+              <InOutArgument x:TypeArguments="x:String">
+                <mca:CSharpReference x:TypeArguments="x:String">NewIp</mca:CSharpReference>
+              </InOutArgument>
+            </bga:GetNewIpActivity.NewIp>
+          </bga:GetNewIpActivity>
+        </Sequence>
+      </While>
+      <sads:DebugSymbol.Symbol>9xBRecVioH4flux7YWyfILbEbkM6XFVzZXJzXEJ1ZGRoaWthXERvY3VtZW50c1xHaXRIdWJcQnVkZGhpa2EuR2V0TXlQdWJsaWNJcFxCdWRkaGlrYS5HZXRNeVB1YmxpY0lwLldvcmtmbG93XEdldE15UHVibGljSXBXZi54YW1sHScDiwEOAgEBKwsrVQIBBzALMFUCAQMzNTM7AgECNQVAHAIBPEEFiQENAgELOAs4ZgIBQT0LPVYCAT1CB4gBEgIBDUFAQUYCAQxDCWwOAgEibQlxEQIBHXIJexICARd8CYcBIAIBDkYPRmICASNKDWcSAgEoag1qiAECASdvDW9kAgEeeTV5OQIBHHUPdWoCARh/D39qAgEThAEPhAFaAgEPTRNNZAIBKVERZRwCAS1SE1gsAgE3WRNkHAIBLlUZVVwCAThhGWFcAgEzXBlcaAIBLw==</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </bgw:Workflow1.Implementation>
+</bgw:Workflow1>

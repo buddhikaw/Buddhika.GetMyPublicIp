@@ -1,0 +1,2 @@
+obj\x86\Debug\GetMyPublicIpWf.g.xaml
+obj\x86\Debug\Buddhika.GetMyPublicIp.Workflow_Workflow1_BeforeInitializeComponentHelper.txt
